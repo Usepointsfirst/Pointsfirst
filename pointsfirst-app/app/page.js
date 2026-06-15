@@ -2,68 +2,32 @@
 
 import { useState } from 'react'
 
+const GOLD    = '#E8B84B'
+const GOLD_LT = '#F5D98A'
+const BLACK   = '#111111'
+const SURFACE = '#1C1C1C'
+
 const CARDS = [
-  { name: 'Chase UR',    bg: '#1A3A8A', label: 'Chase Ultimate Rewards' },
-  { name: 'Amex MR',    bg: '#007AC0', label: 'Amex Membership Rewards' },
-  { name: 'Cap One',    bg: '#C41E3A', label: 'Capital One Miles' },
-  { name: 'Citi TY',    bg: '#003B6A', label: 'Citi ThankYou Points' },
-  { name: 'Bilt',       bg: '#1C1C1C', label: 'Bilt Rewards' },
+  { name: 'Chase UR',  bg: '#1A3A8A', label: 'Chase Ultimate Rewards' },
+  { name: 'Amex MR',  bg: '#007AC0', label: 'Amex Membership Rewards' },
+  { name: 'Cap One',  bg: '#C41E3A', label: 'Capital One Miles' },
+  { name: 'Citi TY',  bg: '#003B6A', label: 'Citi ThankYou Points' },
+  { name: 'Bilt',     bg: '#2A2A2A', label: 'Bilt Rewards' },
 ]
 
 const STEPS = [
-  {
-    n: '01',
-    emoji: '💳',
-    title: 'Pick Your Cards',
-    desc: 'Select which credit cards you hold. Chase, Amex, Capital One, Citi, Bilt — we support all the major programs.',
-  },
-  {
-    n: '02',
-    emoji: '💰',
-    title: 'Enter Your Points',
-    desc: 'Tell us your balance for each card. Enter a partial amount or your full balance — your call.',
-  },
-  {
-    n: '03',
-    emoji: '📅',
-    title: 'Choose Your Dates',
-    desc: 'Select travel dates or compare multiple date ranges side-by-side to find the best window.',
-  },
-  {
-    n: '04',
-    emoji: '✈️',
-    title: 'See Your Options',
-    desc: 'We surface flights you can actually afford with your points, including how to combine across cards for maximum value.',
-  },
-  {
-    n: '05',
-    emoji: '🎯',
-    title: 'Book It',
-    desc: "We show you exactly where and how to book — through your card portal or directly with the airline. We get out of the way.",
-  },
+  { n: '01', emoji: '💳', title: 'Pick Your Cards',    desc: 'Select which credit cards you hold. Chase, Amex, Capital One, Citi, Bilt — we support all the major programs.' },
+  { n: '02', emoji: '💰', title: 'Enter Your Points',  desc: 'Tell us your balance for each card. Enter a partial amount or your full balance — your call.' },
+  { n: '03', emoji: '📅', title: 'Choose Your Dates',  desc: 'Select travel dates or compare multiple date ranges side-by-side to find the best window.' },
+  { n: '04', emoji: '✈️', title: 'See Your Options',   desc: 'We surface flights you can actually afford with your points, including how to combine across cards for maximum value.' },
+  { n: '05', emoji: '🎯', title: 'Book It',            desc: 'We show you exactly where and how to book — through your card portal or directly with the airline. We get out of the way.' },
 ]
 
 const DIFFERENTIATORS = [
-  {
-    icon: '💳',
-    title: 'Points First. Always.',
-    desc: 'Every other tool starts with a destination and hopes your points work out. We start with your cards.',
-  },
-  {
-    icon: '🔗',
-    title: 'Combine Across Cards',
-    desc: 'Have Chase and Amex? We find flights where both cards transfer to the same airline and show you the combined math.',
-  },
-  {
-    icon: '📊',
-    title: 'Real Prices. All Fees.',
-    desc: 'No hidden surprises. Every result includes taxes, carrier fees, and surcharges — the actual number you pay.',
-  },
-  {
-    icon: '⚡',
-    title: 'Transfer Bonus Alerts',
-    desc: 'Cards run 20-40% transfer bonuses a few times a year. We track them so you never miss a chance to stretch your points further.',
-  },
+  { icon: '💳', title: 'Points First. Always.',    desc: 'Every other tool starts with a destination and hopes your points work out. We start with your cards.' },
+  { icon: '🔗', title: 'Combine Across Cards',     desc: 'Have Chase and Amex? We find flights where both cards transfer to the same airline and show you the combined math.' },
+  { icon: '📊', title: 'Real Prices. All Fees.',   desc: 'No hidden surprises. Every result includes taxes, carrier fees, and surcharges — the actual number you pay.' },
+  { icon: '⚡', title: 'Transfer Bonus Alerts',    desc: 'Cards run 20-40% transfer bonuses a few times a year. We track them so you never miss a chance to stretch your points further.' },
 ]
 
 function WaitlistForm({ size = 'large', className = '' }) {
@@ -74,12 +38,11 @@ function WaitlistForm({ size = 'large', className = '' }) {
     e.preventDefault()
     if (!email || !email.includes('@')) return
     setStatus('loading')
-
     try {
       const res = await fetch('/api/subscribe', {
-        method:  'POST',
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email }),
+        body: JSON.stringify({ email }),
       })
       setStatus(res.ok ? 'success' : 'error')
     } catch {
@@ -90,11 +53,11 @@ function WaitlistForm({ size = 'large', className = '' }) {
   if (status === 'success') {
     return (
       <div className={`flex flex-col items-center gap-2 ${className}`}>
-        <div className="flex items-center gap-3 bg-green-500/20 border border-green-400/40 rounded-2xl px-6 py-4">
+        <div className="flex items-center gap-3 rounded-2xl px-6 py-4" style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)' }}>
           <span className="text-2xl">🎉</span>
           <div>
-            <p className="text-green-300 font-bold text-sm">You're on the list!</p>
-            <p className="text-green-400/80 text-xs mt-0.5">We'll email you the moment we launch.</p>
+            <p className="font-bold text-sm" style={{ color: '#86efac' }}>You're on the list!</p>
+            <p className="text-xs mt-0.5" style={{ color: 'rgba(134,239,172,0.7)' }}>We'll email you the moment we launch.</p>
           </div>
         </div>
       </div>
@@ -112,24 +75,39 @@ function WaitlistForm({ size = 'large', className = '' }) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
           required
-          className={`flex-1 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-pf-gold focus:bg-white/15 transition-all ${
-            isLarge ? 'px-5 py-4 text-base' : 'px-4 py-3 text-sm'
-          }`}
+          className="flex-1 rounded-xl transition-all"
+          style={{
+            background: 'rgba(255,255,255,0.08)',
+            border: '1px solid rgba(255,255,255,0.2)',
+            color: 'white',
+            padding: isLarge ? '16px 20px' : '12px 16px',
+            fontSize: isLarge ? '16px' : '14px',
+            outline: 'none',
+          }}
+          onFocus={e => e.target.style.borderColor = GOLD}
+          onBlur={e  => e.target.style.borderColor = 'rgba(255,255,255,0.2)'}
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className={`rounded-xl font-bold bg-pf-gold hover:bg-pf-gold-lt active:scale-95 text-pf-black transition-all disabled:opacity-60 whitespace-nowrap ${
-            isLarge ? 'px-7 py-4 text-base' : 'px-5 py-3 text-sm'
-          }`}
+          className="rounded-xl font-bold transition-all active:scale-95 whitespace-nowrap"
+          style={{
+            background: GOLD,
+            color: BLACK,
+            padding: isLarge ? '16px 28px' : '12px 20px',
+            fontSize: isLarge ? '16px' : '14px',
+            opacity: status === 'loading' ? 0.6 : 1,
+          }}
+          onMouseEnter={e => e.currentTarget.style.background = GOLD_LT}
+          onMouseLeave={e => e.currentTarget.style.background = GOLD}
         >
           {status === 'loading' ? 'Joining…' : 'Join Waitlist'}
         </button>
       </div>
       {status === 'error' && (
-        <p className="text-red-400 text-xs text-center mt-2">Something went wrong. Try again.</p>
+        <p className="text-xs text-center mt-2" style={{ color: '#f87171' }}>Something went wrong. Try again.</p>
       )}
-      <p className="text-white/40 text-xs text-center mt-3">
+      <p className="text-xs text-center mt-3" style={{ color: 'rgba(255,255,255,0.35)' }}>
         Free to join · No spam · Unsubscribe anytime
       </p>
     </form>
@@ -140,40 +118,36 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white font-sans">
 
-      {/* ── NAV ──────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-pf-black/95 backdrop-blur-sm border-b border-white/10">
+      {/* ── NAV ── */}
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm" style={{ background: 'rgba(17,17,17,0.95)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
-          <span className="text-white font-bold text-lg tracking-tight">
-            Points<span className="text-pf-gold">First</span>
+          <span className="font-bold text-lg tracking-tight" style={{ color: 'white' }}>
+            Points<span style={{ color: GOLD }}>First</span>
           </span>
           <a
             href="#waitlist"
-            className="text-sm font-semibold bg-pf-gold hover:bg-pf-gold-lt text-pf-black px-4 py-2 rounded-lg transition-colors"
+            className="text-sm font-semibold rounded-lg transition-colors"
+            style={{ background: GOLD, color: BLACK, padding: '8px 16px' }}
+            onMouseEnter={e => e.currentTarget.style.background = GOLD_LT}
+            onMouseLeave={e => e.currentTarget.style.background = GOLD}
           >
             Join Waitlist
           </a>
         </div>
       </nav>
 
-      {/* ── HERO ─────────────────────────────────────────── */}
+      {/* ── HERO ── */}
       <section
         className="relative pt-14 min-h-screen flex flex-col items-center justify-center px-5 text-center overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 60%, #111111 100%)' }}
+        style={{ background: `linear-gradient(160deg, ${BLACK} 0%, ${SURFACE} 60%, ${BLACK} 100%)` }}
       >
-        {/* Background glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,168,67,0.08) 0%, transparent 70%)',
-          }}
-        />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,184,75,0.07) 0%, transparent 70%)` }} />
 
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-pf-gold/10 border border-pf-gold/30 rounded-full px-4 py-1.5 mb-8">
-            <span className="w-2 h-2 rounded-full bg-pf-gold animate-pulse" />
-            <span className="text-pf-gold text-xs font-semibold tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.35)` }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: GOLD }} />
+            <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: GOLD }}>
               Coming Soon · Founding Members Get Early Access
             </span>
           </div>
@@ -187,13 +161,11 @@ export default function Home() {
             Your Points
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-white/70 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
             Select your credit cards. Enter your balance. We find flights you can actually afford to
             book — and combine points across cards so you never leave value on the table.
           </p>
 
-          {/* Form */}
           <div id="waitlist">
             <WaitlistForm size="large" />
           </div>
@@ -210,11 +182,10 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <p className="text-white/30 text-xs mt-3">Chase · Amex · Capital One · Citi · Bilt — more coming</p>
+          <p className="text-xs mt-3" style={{ color: 'rgba(255,255,255,0.25)' }}>Chase · Amex · Capital One · Citi · Bilt — more coming</p>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/30">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
           <span className="text-xs">Scroll to learn more</span>
           <svg className="w-4 h-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -222,10 +193,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── THE PROBLEM ──────────────────────────────────── */}
+      {/* ── THE PROBLEM ── */}
       <section className="py-20 px-5 bg-gray-50">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: '#D4A843' }}>The Problem</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: GOLD }}>The Problem</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
             Every other flight search starts with
             <span className="text-gray-400"> the destination.</span>
@@ -238,30 +209,28 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 text-lg font-bold">
             <span className="text-red-400 line-through opacity-60">Destination first</span>
             <span className="text-gray-300 text-2xl">→</span>
-            <span style={{ color: '#D4A843' }}>Points first</span>
+            <span style={{ color: GOLD }}>Points first</span>
           </div>
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ─────────────────────────────────── */}
+      {/* ── HOW IT WORKS ── */}
       <section className="py-20 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>How It Works</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>How It Works</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Five steps. Zero confusion.</h2>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {STEPS.map((step, i) => (
               <div key={step.n} className="relative flex flex-col">
-                {/* Connector line (desktop only) */}
                 {i < STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[calc(100%+0px)] w-full h-px z-0" style={{ background: '#D4A84330', width: 'calc(100% - 20px)', left: '60%' }} />
+                  <div className="hidden lg:block absolute top-8 h-px z-0" style={{ background: `rgba(232,184,75,0.25)`, width: 'calc(100% - 20px)', left: '60%' }} />
                 )}
                 <div className="relative z-10 bg-gray-50 rounded-2xl p-5 flex flex-col gap-3 h-full border border-gray-100">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{step.emoji}</span>
-                    <span className="text-xs font-black tracking-widest" style={{ color: '#D4A843' }}>{step.n}</span>
+                    <span className="text-xs font-black tracking-widest" style={{ color: GOLD }}>{step.n}</span>
                   </div>
                   <h3 className="font-bold text-gray-900 text-base">{step.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
@@ -272,93 +241,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── COMBINING FEATURE ────────────────────────────── */}
-      <section
-        className="py-20 px-5"
-        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 100%)' }}
-      >
+      {/* ── COMBINING FEATURE ── */}
+      <section className="py-20 px-5" style={{ background: `linear-gradient(160deg, ${BLACK} 0%, ${SURFACE} 100%)` }}>
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>The Feature No One Else Has</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>The Feature No One Else Has</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               Two cards. One trip.
               <br />
               <span className="text-gradient">Maximum value.</span>
             </h2>
-            <p className="text-white/60 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg mt-5 max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
               When Chase UR and Amex MR both transfer to Air Canada Aeroplan, your points
               aren't separate anymore — they're one combined balance. PointsFirst is the only
               tool that shows you this.
             </p>
           </div>
 
-          {/* Visual example */}
           <div className="flex flex-col items-center gap-3 max-w-sm mx-auto">
-            {/* Card 1 */}
-            <div
-              className="w-full rounded-2xl p-5 flex items-center justify-between"
-              style={{ background: '#1A3A8A', border: '1px solid rgba(255,255,255,0.1)' }}
-            >
+            <div className="w-full rounded-2xl p-5 flex items-center justify-between" style={{ background: '#1A3A8A', border: '1px solid rgba(255,255,255,0.1)' }}>
               <div>
-                <p className="text-blue-200 text-xs font-bold uppercase tracking-wide">Chase Ultimate Rewards</p>
+                <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#93C5FD' }}>Chase Ultimate Rewards</p>
                 <p className="text-white font-extrabold text-2xl mt-1">45,000 pts</p>
               </div>
               <span className="text-3xl">💳</span>
             </div>
 
-            <div className="text-white/40 font-black text-2xl">+</div>
+            <div className="font-black text-2xl" style={{ color: 'rgba(255,255,255,0.35)' }}>+</div>
 
-            {/* Card 2 */}
-            <div
-              className="w-full rounded-2xl p-5 flex items-center justify-between"
-              style={{ background: '#007AC0', border: '1px solid rgba(255,255,255,0.1)' }}
-            >
+            <div className="w-full rounded-2xl p-5 flex items-center justify-between" style={{ background: '#007AC0', border: '1px solid rgba(255,255,255,0.1)' }}>
               <div>
-                <p className="text-blue-100 text-xs font-bold uppercase tracking-wide">Amex Membership Rewards</p>
+                <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#BAE6FD' }}>Amex Membership Rewards</p>
                 <p className="text-white font-extrabold text-2xl mt-1">30,000 pts</p>
               </div>
               <span className="text-3xl">💳</span>
             </div>
 
-            <div className="text-white/40 font-black text-2xl">=</div>
+            <div className="font-black text-2xl" style={{ color: 'rgba(255,255,255,0.35)' }}>=</div>
 
-            {/* Result */}
-            <div className="w-full rounded-2xl p-5 border" style={{ background: '#1C1C1C', borderColor: '#D4A843' }}>
+            <div className="w-full rounded-2xl p-5" style={{ background: SURFACE, border: `2px solid ${GOLD}` }}>
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#D4A843' }}>Air Canada Aeroplan</p>
+                  <p className="text-xs font-bold uppercase tracking-wide" style={{ color: GOLD }}>Air Canada Aeroplan</p>
                   <p className="text-white font-extrabold text-2xl mt-1">75,000 pts</p>
                 </div>
                 <span className="text-3xl">✈️</span>
               </div>
-              <div className="border-t pt-3 flex items-center gap-2" style={{ borderColor: '#D4A84340' }}>
-                <span className="text-green-400 font-bold text-sm">✅</span>
-                <p className="text-white/90 text-sm font-semibold">
-                  Business Class · New York → London
-                </p>
+              <div className="pt-3 flex items-center gap-2" style={{ borderTop: `1px solid rgba(232,184,75,0.3)` }}>
+                <span className="font-bold text-sm" style={{ color: '#4ade80' }}>✅</span>
+                <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>Business Class · New York → London</p>
               </div>
             </div>
           </div>
 
-          <p className="text-white/30 text-xs text-center mt-6">
+          <p className="text-xs text-center mt-6" style={{ color: 'rgba(255,255,255,0.25)' }}>
             Example only. Actual award availability and rates vary.
           </p>
         </div>
       </section>
 
-      {/* ── DIFFERENTIATORS ──────────────────────────────── */}
+      {/* ── DIFFERENTIATORS ── */}
       <section className="py-20 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>Why PointsFirst</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>Why PointsFirst</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Built different. On purpose.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {DIFFERENTIATORS.map((d) => (
-              <div
-                key={d.title}
-                className="rounded-2xl border border-gray-100 bg-gray-50 p-6 flex gap-4"
-              >
+              <div key={d.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6 flex gap-4">
                 <span className="text-3xl flex-shrink-0">{d.icon}</span>
                 <div>
                   <h3 className="font-bold text-gray-900 text-base mb-2">{d.title}</h3>
@@ -370,18 +321,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SUPPORTED CARDS ──────────────────────────────── */}
+      {/* ── SUPPORTED CARDS ── */}
       <section className="py-16 px-5 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-bold uppercase tracking-widest mb-8" style={{ color: '#D4A843' }}>Supported Programs at Launch</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-8" style={{ color: GOLD }}>Supported Programs at Launch</p>
           <div className="flex flex-wrap justify-center gap-4">
             {CARDS.map((c) => (
-              <div
-                key={c.name}
-                className="flex items-center gap-3 rounded-xl px-5 py-3"
-                style={{ background: c.bg, border: `1px solid ${c.bg}` }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full bg-white/60" />
+              <div key={c.name} className="flex items-center gap-3 rounded-xl px-5 py-3" style={{ background: c.bg, border: `1px solid ${c.bg}` }}>
+                <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgba(255,255,255,0.6)' }} />
                 <span className="text-white font-bold text-sm">{c.label}</span>
               </div>
             ))}
@@ -390,42 +337,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── BOTTOM CTA ───────────────────────────────────── */}
-      <section
-        className="py-24 px-5 text-center"
-        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 100%)' }}
-        id="cta"
-      >
+      {/* ── BOTTOM CTA ── */}
+      <section className="py-24 px-5 text-center" style={{ background: `linear-gradient(160deg, ${BLACK} 0%, ${SURFACE} 100%)` }} id="cta">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">
-            Be first in line.
-          </h2>
-          <p className="text-white/60 text-lg mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">Be first in line.</h2>
+          <p className="text-lg mb-3" style={{ color: 'rgba(255,255,255,0.55)' }}>
             Founding members get early access and locked-in pricing — forever.
           </p>
-          <p className="text-sm font-semibold mb-10" style={{ color: '#D4A843' }}>
+          <p className="text-sm font-semibold mb-10" style={{ color: GOLD }}>
             No credit card required to join the waitlist.
           </p>
           <WaitlistForm size="default" className="max-w-sm mx-auto" />
         </div>
       </section>
 
-      {/* ── FOOTER ───────────────────────────────────────── */}
-      <footer className="py-8 px-5 bg-pf-black border-t border-white/10">
+      {/* ── FOOTER ── */}
+      <footer className="py-8 px-5" style={{ background: BLACK, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-          <span className="text-white/50 text-sm font-bold">
-            Points<span className="text-pf-gold">First</span>
+          <span className="text-sm font-bold" style={{ color: 'rgba(255,255,255,0.45)' }}>
+            Points<span style={{ color: GOLD }}>First</span>
           </span>
-          <p className="text-white/30 text-xs">
-            © 2026 PointsFirst · usepointsfirst.com
-          </p>
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>© 2026 PointsFirst · usepointsfirst.com</p>
           <div className="flex gap-4">
-            <a href="#" className="text-white/30 hover:text-white/60 text-xs transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-white/30 hover:text-white/60 text-xs transition-colors">
-              Terms
-            </a>
+            <a href="#" className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.25)' }}>Privacy Policy</a>
+            <a href="#" className="text-xs transition-colors" style={{ color: 'rgba(255,255,255,0.25)' }}>Terms</a>
           </div>
         </div>
       </footer>
