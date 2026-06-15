@@ -112,14 +112,14 @@ function WaitlistForm({ size = 'large', className = '' }) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email"
           required
-          className={`flex-1 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-blue-400 focus:bg-white/15 transition-all ${
+          className={`flex-1 rounded-xl border border-white/20 bg-white/10 text-white placeholder-white/50 focus:outline-none focus:border-pf-gold focus:bg-white/15 transition-all ${
             isLarge ? 'px-5 py-4 text-base' : 'px-4 py-3 text-sm'
           }`}
         />
         <button
           type="submit"
           disabled={status === 'loading'}
-          className={`rounded-xl font-bold bg-blue-500 hover:bg-blue-400 active:scale-95 text-white transition-all disabled:opacity-60 whitespace-nowrap ${
+          className={`rounded-xl font-bold bg-pf-gold hover:bg-pf-gold-lt active:scale-95 text-pf-black transition-all disabled:opacity-60 whitespace-nowrap ${
             isLarge ? 'px-7 py-4 text-base' : 'px-5 py-3 text-sm'
           }`}
         >
@@ -141,14 +141,14 @@ export default function Home() {
     <main className="min-h-screen bg-white font-sans">
 
       {/* ── NAV ──────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-pf-navy/95 backdrop-blur-sm border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-pf-black/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-6xl mx-auto px-5 h-14 flex items-center justify-between">
           <span className="text-white font-bold text-lg tracking-tight">
-            Points<span className="text-blue-400">First</span>
+            Points<span className="text-pf-gold">First</span>
           </span>
           <a
             href="#waitlist"
-            className="text-sm font-semibold bg-blue-500 hover:bg-blue-400 text-white px-4 py-2 rounded-lg transition-colors"
+            className="text-sm font-semibold bg-pf-gold hover:bg-pf-gold-lt text-pf-black px-4 py-2 rounded-lg transition-colors"
           >
             Join Waitlist
           </a>
@@ -158,22 +158,22 @@ export default function Home() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <section
         className="relative pt-14 min-h-screen flex flex-col items-center justify-center px-5 text-center overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #0A1628 0%, #1A3A8A 60%, #0F2461 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 60%, #111111 100%)' }}
       >
         {/* Background glow */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(59,130,246,0.15) 0%, transparent 70%)',
+              'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(212,168,67,0.08) 0%, transparent 70%)',
           }}
         />
 
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-400/30 rounded-full px-4 py-1.5 mb-8">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-            <span className="text-blue-300 text-xs font-semibold tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 bg-pf-gold/10 border border-pf-gold/30 rounded-full px-4 py-1.5 mb-8">
+            <span className="w-2 h-2 rounded-full bg-pf-gold animate-pulse" />
+            <span className="text-pf-gold text-xs font-semibold tracking-wide uppercase">
               Coming Soon · Founding Members Get Early Access
             </span>
           </div>
@@ -225,7 +225,7 @@ export default function Home() {
       {/* ── THE PROBLEM ──────────────────────────────────── */}
       <section className="py-20 px-5 bg-gray-50">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4">The Problem</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: '#D4A843' }}>The Problem</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
             Every other flight search starts with
             <span className="text-gray-400"> the destination.</span>
@@ -238,7 +238,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 text-lg font-bold">
             <span className="text-red-400 line-through opacity-60">Destination first</span>
             <span className="text-gray-300 text-2xl">→</span>
-            <span className="text-blue-600">Points first</span>
+            <span style={{ color: '#D4A843' }}>Points first</span>
           </div>
         </div>
       </section>
@@ -247,7 +247,7 @@ export default function Home() {
       <section className="py-20 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">How It Works</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>How It Works</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Five steps. Zero confusion.</h2>
           </div>
 
@@ -256,12 +256,12 @@ export default function Home() {
               <div key={step.n} className="relative flex flex-col">
                 {/* Connector line (desktop only) */}
                 {i < STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[calc(100%+0px)] w-full h-px bg-blue-100 z-0" style={{ width: 'calc(100% - 20px)', left: '60%' }} />
+                  <div className="hidden lg:block absolute top-8 left-[calc(100%+0px)] w-full h-px z-0" style={{ background: '#D4A84330', width: 'calc(100% - 20px)', left: '60%' }} />
                 )}
                 <div className="relative z-10 bg-gray-50 rounded-2xl p-5 flex flex-col gap-3 h-full border border-gray-100">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{step.emoji}</span>
-                    <span className="text-xs font-black text-blue-400 tracking-widest">{step.n}</span>
+                    <span className="text-xs font-black tracking-widest" style={{ color: '#D4A843' }}>{step.n}</span>
                   </div>
                   <h3 className="font-bold text-gray-900 text-base">{step.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
@@ -275,11 +275,11 @@ export default function Home() {
       {/* ── COMBINING FEATURE ────────────────────────────── */}
       <section
         className="py-20 px-5"
-        style={{ background: 'linear-gradient(160deg, #0A1628 0%, #0F2461 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 100%)' }}
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <p className="text-sm font-bold text-blue-400 uppercase tracking-widest mb-3">The Feature No One Else Has</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>The Feature No One Else Has</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               Two cards. One trip.
               <br />
@@ -323,15 +323,15 @@ export default function Home() {
             <div className="text-white/40 font-black text-2xl">=</div>
 
             {/* Result */}
-            <div className="w-full rounded-2xl p-5 bg-gradient-to-r from-blue-600 to-blue-500 border border-blue-400/40">
+            <div className="w-full rounded-2xl p-5 border" style={{ background: '#1C1C1C', borderColor: '#D4A843' }}>
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-blue-100 text-xs font-bold uppercase tracking-wide">Air Canada Aeroplan</p>
+                  <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#D4A843' }}>Air Canada Aeroplan</p>
                   <p className="text-white font-extrabold text-2xl mt-1">75,000 pts</p>
                 </div>
                 <span className="text-3xl">✈️</span>
               </div>
-              <div className="border-t border-blue-400/30 pt-3 flex items-center gap-2">
+              <div className="border-t pt-3 flex items-center gap-2" style={{ borderColor: '#D4A84340' }}>
                 <span className="text-green-400 font-bold text-sm">✅</span>
                 <p className="text-white/90 text-sm font-semibold">
                   Business Class · New York → London
@@ -350,7 +350,7 @@ export default function Home() {
       <section className="py-20 px-5 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-3">Why PointsFirst</p>
+            <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: '#D4A843' }}>Why PointsFirst</p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Built different. On purpose.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -373,7 +373,7 @@ export default function Home() {
       {/* ── SUPPORTED CARDS ──────────────────────────────── */}
       <section className="py-16 px-5 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-8">Supported Programs at Launch</p>
+          <p className="text-sm font-bold uppercase tracking-widest mb-8" style={{ color: '#D4A843' }}>Supported Programs at Launch</p>
           <div className="flex flex-wrap justify-center gap-4">
             {CARDS.map((c) => (
               <div
@@ -393,7 +393,7 @@ export default function Home() {
       {/* ── BOTTOM CTA ───────────────────────────────────── */}
       <section
         className="py-24 px-5 text-center"
-        style={{ background: 'linear-gradient(160deg, #0A1628 0%, #1A3A8A 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #111111 0%, #1C1C1C 100%)' }}
         id="cta"
       >
         <div className="max-w-2xl mx-auto">
@@ -403,7 +403,7 @@ export default function Home() {
           <p className="text-white/60 text-lg mb-3">
             Founding members get early access and locked-in pricing — forever.
           </p>
-          <p className="text-blue-400 font-semibold text-sm mb-10">
+          <p className="text-sm font-semibold mb-10" style={{ color: '#D4A843' }}>
             No credit card required to join the waitlist.
           </p>
           <WaitlistForm size="default" className="max-w-sm mx-auto" />
@@ -411,10 +411,10 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────── */}
-      <footer className="py-8 px-5 bg-pf-navy border-t border-white/10">
+      <footer className="py-8 px-5 bg-pf-black border-t border-white/10">
         <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <span className="text-white/50 text-sm font-bold">
-            Points<span className="text-blue-400">First</span>
+            Points<span className="text-pf-gold">First</span>
           </span>
           <p className="text-white/30 text-xs">
             © 2026 PointsFirst · usepointsfirst.com
