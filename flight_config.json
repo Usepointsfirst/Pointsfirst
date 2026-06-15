@@ -1,0 +1,78 @@
+{
+  "_readme": "FlightWatch Pro — Edit this file to configure your routes, alerts, and API keys.",
+
+  "apis": {
+    "_note_serpapi": "SerpAPI powers the Google Flights data (most accurate, includes all fees). Get a key at https://serpapi.com — free trial available, paid plans from ~$50/mo for 5,000 searches.",
+    "serpapi_key": "YOUR_SERPAPI_KEY",
+
+    "_note_amadeus": "Amadeus is a secondary data source (cross-validation). Free at https://developers.amadeus.com — 2,000 free API calls/month on the test environment.",
+    "amadeus_client_id": "YOUR_AMADEUS_CLIENT_ID",
+    "amadeus_client_secret": "YOUR_AMADEUS_CLIENT_SECRET"
+  },
+
+  "email": {
+    "_note": "Gmail is used to send reports. 'from' must be a Gmail address. 'app_password' is a 16-character App Password — NOT your regular Gmail password. See setup guide.",
+    "to": "kennyhill0106@gmail.com",
+    "from": "YOUR_GMAIL_ADDRESS@gmail.com",
+    "app_password": "YOUR_GMAIL_APP_PASSWORD"
+  },
+
+  "_note_always_send": "Set to true to receive a report on every run. Set to false to only email when an alert triggers.",
+  "always_send_report": true,
+
+  "credit_cards": {
+    "_note": "Enter your current point balances. Set a card to 0 to hide it from reports.",
+    "chase_ur":    100000,
+    "amex_mr":     75000,
+    "capital_one": 50000,
+    "citi_ty":     30000,
+    "bilt":        25000
+  },
+
+  "routes": [
+    {
+      "_comment": "── ROUTE 1: Example — Multiple NYC-area airports to Los Angeles ──",
+      "destination": "LAX",
+      "destination_name": "Los Angeles (LAX)",
+
+      "_note_origins": "List as many origin airports as you want — all will be checked and compared.",
+      "origins": ["JFK", "LGA", "EWR"],
+
+      "_note_dates": "Use YYYY-MM-DD format.",
+      "dep_date": "2026-07-15",
+      "ret_date": "2026-07-22",
+
+      "_note_cabin": "Options: ECONOMY, PREMIUM_ECONOMY, BUSINESS, FIRST",
+      "cabin": "ECONOMY",
+
+      "_note_threshold": "Alert if price drops AT OR BELOW this dollar amount.",
+      "alert_threshold_usd": 300,
+
+      "_note_pct_drop": "Alert if price drops this % below the 30-day average (needs 3+ readings to activate).",
+      "alert_pct_drop": 15
+    },
+
+    {
+      "_comment": "── ROUTE 2: Example — One-way trip, single origin ──",
+      "destination": "MIA",
+      "destination_name": "Miami (MIA)",
+      "origins": ["ATL"],
+      "dep_date": "2026-08-10",
+      "cabin": "ECONOMY",
+      "alert_threshold_usd": 180,
+      "alert_pct_drop": 20
+    },
+
+    {
+      "_comment": "── ROUTE 3: Example — International, business class ──",
+      "destination": "LHR",
+      "destination_name": "London Heathrow (LHR)",
+      "origins": ["JFK", "EWR"],
+      "dep_date": "2026-09-01",
+      "ret_date": "2026-09-15",
+      "cabin": "BUSINESS",
+      "alert_threshold_usd": 2500,
+      "alert_pct_drop": 12
+    }
+  ]
+}
