@@ -141,7 +141,10 @@ export default function Home() {
         className="relative pt-14 min-h-screen flex flex-col items-center justify-center px-5 text-center overflow-hidden"
         style={{ background: `linear-gradient(160deg, ${BLACK} 0%, ${SURFACE} 60%, ${BLACK} 100%)` }}
       >
-        <div className="absolute inset-0 pointer-events-none" style={{ background: `radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,184,75,0.07) 0%, transparent 70%)` }} />
+        {/* Layered background glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 55% at 50% 38%, rgba(232,184,75,0.13) 0%, transparent 65%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 40% 30% at 30% 60%, rgba(232,184,75,0.05) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 40% 30% at 70% 25%, rgba(232,184,75,0.05) 0%, transparent 60%)' }} />
 
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Badge */}
@@ -156,7 +159,7 @@ export default function Home() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
             The First Flight Search
             <br />
-            <span className="text-gradient">That Starts With</span>
+            <span style={{ background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_LT} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>That Starts With</span>
             <br />
             Your Points
           </h1>
@@ -249,7 +252,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               Two cards. One trip.
               <br />
-              <span className="text-gradient">Maximum value.</span>
+              <span style={{ background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_LT} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Maximum value.</span>
             </h2>
             <p className="text-lg mt-5 max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
               When Chase UR and Amex MR both transfer to Air Canada Aeroplan, your points
