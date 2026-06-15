@@ -16,18 +16,53 @@ const CARDS = [
 ]
 
 const STEPS = [
-  { n: '01', emoji: '💳', title: 'Pick Your Cards',    desc: 'Select which credit cards you hold. Chase, Amex, Capital One, Citi, Bilt — we support all the major programs.' },
-  { n: '02', emoji: '💰', title: 'Enter Your Points',  desc: 'Tell us your balance for each card. Enter a partial amount or your full balance — your call.' },
-  { n: '03', emoji: '📅', title: 'Choose Your Dates',  desc: 'Select travel dates or compare multiple date ranges side-by-side to find the best window.' },
-  { n: '04', emoji: '✈️', title: 'See Your Options',   desc: 'We surface flights you can actually afford with your points, including how to combine across cards for maximum value.' },
-  { n: '05', emoji: '🎯', title: 'Book It',            desc: 'We show you exactly where and how to book — through your card portal or directly with the airline. We get out of the way.' },
+  { n: '01', title: 'Pick Your Cards',    desc: 'Select which credit cards you hold. Chase, Amex, Capital One, Citi, Bilt — we support all the major programs.' },
+  { n: '02', title: 'Enter Your Points',  desc: 'Tell us your balance for each card. Enter a partial amount or your full balance — your call.' },
+  { n: '03', title: 'Choose Your Dates',  desc: 'Select travel dates or compare multiple date ranges side-by-side to find the best window.' },
+  { n: '04', title: 'See Your Options',   desc: 'We surface flights you can actually afford with your points, including how to combine across cards for maximum value.' },
+  { n: '05', title: 'Book It',            desc: 'We show you exactly where and how to book — through your card portal or directly with the airline. We get out of the way.' },
 ]
 
+const ICONS = {
+  card: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+    </svg>
+  ),
+  link: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+  ),
+  chart: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    </svg>
+  ),
+  bolt: (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </svg>
+  ),
+  plane: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+    </svg>
+  ),
+  check: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  ),
+}
+
 const DIFFERENTIATORS = [
-  { icon: '💳', title: 'Points First. Always.',    desc: 'Every other tool starts with a destination and hopes your points work out. We start with your cards.' },
-  { icon: '🔗', title: 'Combine Across Cards',     desc: 'Have Chase and Amex? We find flights where both cards transfer to the same airline and show you the combined math.' },
-  { icon: '📊', title: 'Real Prices. All Fees.',   desc: 'No hidden surprises. Every result includes taxes, carrier fees, and surcharges — the actual number you pay.' },
-  { icon: '⚡', title: 'Transfer Bonus Alerts',    desc: 'Cards run 20-40% transfer bonuses a few times a year. We track them so you never miss a chance to stretch your points further.' },
+  { icon: 'card',  title: 'Points First. Always.',    desc: 'Every other tool starts with a destination and hopes your points work out. We start with your cards.' },
+  { icon: 'link',  title: 'Combine Across Cards',     desc: 'Have Chase and Amex? We find flights where both cards transfer to the same airline and show you the combined math.' },
+  { icon: 'chart', title: 'Real Prices. All Fees.',   desc: 'No hidden surprises. Every result includes taxes, carrier fees, and surcharges — the actual number you pay.' },
+  { icon: 'bolt',  title: 'Transfer Bonus Alerts',    desc: 'Cards run 20-40% transfer bonuses a few times a year. We track them so you never miss a chance to stretch your points further.' },
 ]
 
 function WaitlistForm({ size = 'large', className = '' }) {
@@ -53,11 +88,13 @@ function WaitlistForm({ size = 'large', className = '' }) {
   if (status === 'success') {
     return (
       <div className={`flex flex-col items-center gap-2 ${className}`}>
-        <div className="flex items-center gap-3 rounded-2xl px-6 py-4" style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.3)' }}>
-          <span className="text-2xl">🎉</span>
+        <div className="flex items-center gap-3 rounded-2xl px-6 py-4" style={{ background: 'rgba(232,184,75,0.1)', border: `1px solid rgba(232,184,75,0.35)` }}>
+          <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style={{ background: 'rgba(232,184,75,0.2)', color: GOLD }}>
+            {ICONS.check}
+          </div>
           <div>
-            <p className="font-bold text-sm" style={{ color: '#86efac' }}>You're on the list!</p>
-            <p className="text-xs mt-0.5" style={{ color: 'rgba(134,239,172,0.7)' }}>We'll email you the moment we launch.</p>
+            <p className="font-bold text-sm" style={{ color: GOLD }}>You're on the list.</p>
+            <p className="text-xs mt-0.5" style={{ color: 'rgba(255,255,255,0.5)' }}>We'll email you the moment we launch.</p>
           </div>
         </div>
       </div>
@@ -231,9 +268,8 @@ export default function Home() {
                   <div className="hidden lg:block absolute top-8 h-px z-0" style={{ background: `rgba(232,184,75,0.25)`, width: 'calc(100% - 20px)', left: '60%' }} />
                 )}
                 <div className="relative z-10 bg-gray-50 rounded-2xl p-5 flex flex-col gap-3 h-full border border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{step.emoji}</span>
-                    <span className="text-xs font-black tracking-widest" style={{ color: GOLD }}>{step.n}</span>
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold tracking-wider" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.4)`, color: GOLD }}>
+                    {step.n}
                   </div>
                   <h3 className="font-bold text-gray-900 text-base">{step.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
@@ -262,36 +298,30 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col items-center gap-3 max-w-sm mx-auto">
-            <div className="w-full rounded-2xl p-5 flex items-center justify-between" style={{ background: '#1A3A8A', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#93C5FD' }}>Chase Ultimate Rewards</p>
-                <p className="text-white font-extrabold text-2xl mt-1">45,000 pts</p>
-              </div>
-              <span className="text-3xl">💳</span>
+            <div className="w-full rounded-2xl p-5" style={{ background: '#1A3A8A', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: '#93C5FD' }}>Chase Ultimate Rewards</p>
+              <p className="text-white font-extrabold text-2xl">45,000 pts</p>
             </div>
 
-            <div className="font-black text-2xl" style={{ color: 'rgba(255,255,255,0.35)' }}>+</div>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}>+</div>
 
-            <div className="w-full rounded-2xl p-5 flex items-center justify-between" style={{ background: '#007AC0', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <div>
-                <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#BAE6FD' }}>Amex Membership Rewards</p>
-                <p className="text-white font-extrabold text-2xl mt-1">30,000 pts</p>
-              </div>
-              <span className="text-3xl">💳</span>
+            <div className="w-full rounded-2xl p-5" style={{ background: '#007AC0', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: '#BAE6FD' }}>Amex Membership Rewards</p>
+              <p className="text-white font-extrabold text-2xl">30,000 pts</p>
             </div>
 
-            <div className="font-black text-2xl" style={{ color: 'rgba(255,255,255,0.35)' }}>=</div>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}>=</div>
 
             <div className="w-full rounded-2xl p-5" style={{ background: SURFACE, border: `2px solid ${GOLD}` }}>
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-wide" style={{ color: GOLD }}>Air Canada Aeroplan</p>
-                  <p className="text-white font-extrabold text-2xl mt-1">75,000 pts</p>
+                  <p className="text-xs font-bold uppercase tracking-wide mb-1" style={{ color: GOLD }}>Air Canada Aeroplan</p>
+                  <p className="text-white font-extrabold text-2xl">75,000 pts</p>
                 </div>
-                <span className="text-3xl">✈️</span>
+                <div style={{ color: GOLD }}>{ICONS.plane}</div>
               </div>
               <div className="pt-3 flex items-center gap-2" style={{ borderTop: `1px solid rgba(232,184,75,0.3)` }}>
-                <span className="font-bold text-sm" style={{ color: '#4ade80' }}>✅</span>
+                <div className="flex-shrink-0" style={{ color: '#4ade80' }}>{ICONS.check}</div>
                 <p className="text-sm font-semibold" style={{ color: 'rgba(255,255,255,0.85)' }}>Business Class · New York → London</p>
               </div>
             </div>
@@ -313,7 +343,9 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {DIFFERENTIATORS.map((d) => (
               <div key={d.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6 flex gap-4">
-                <span className="text-3xl flex-shrink-0">{d.icon}</span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(232,184,75,0.1)', color: GOLD }}>
+                  {ICONS[d.icon]}
+                </div>
                 <div>
                   <h3 className="font-bold text-gray-900 text-base mb-2">{d.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{d.desc}</p>
