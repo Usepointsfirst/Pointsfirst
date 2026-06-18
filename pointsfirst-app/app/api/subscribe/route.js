@@ -3,8 +3,7 @@ import { Resend } from 'resend'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 // The email address you want new signup notifications sent to
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'pointsfirstapp@gmail.com'
-
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'usepointsfirst@gmail.com'
 export async function POST(request) {
   try {
     const { email } = await request.json()
@@ -15,60 +14,60 @@ export async function POST(request) {
 
     // 1. Send confirmation email to the person who signed up
     await resend.emails.send({
-      from: 'PointsFirst <onboarding@resend.dev>',  // Update to hello@usepointsfirst.com after domain verification
+      from: 'PointsFirst <hello@usepointsfirst.com>',
       to: email,
-      subject: "You're on the PointsFirst waitlist 🎉",
+      subject: "You're on the PointsFirst waitlist",
       html: `
         <!DOCTYPE html>
         <html>
         <head><meta charset="utf-8"/></head>
-        <body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#F3F4F6;">
-          <div style="max-width:560px;margin:40px auto;background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+        <body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0D0D0D;">
+          <div style="max-width:560px;margin:40px auto;background:#111111;border-radius:16px;overflow:hidden;border:1px solid rgba(232,184,75,0.15);">
 
             <!-- Header -->
-            <div style="background:linear-gradient(135deg,#0A1628 0%,#1A3A8A 100%);padding:32px 32px 28px;">
-              <p style="margin:0;color:white;font-size:22px;font-weight:800;letter-spacing:-0.3px;">
-                Points<span style="color:#60A5FA;">First</span>
+            <div style="background:linear-gradient(135deg,#111111 0%,#1C1C1C 100%);padding:32px 32px 28px;border-bottom:1px solid rgba(232,184,75,0.15);">
+              <p style="margin:0;font-size:22px;font-weight:800;letter-spacing:-0.3px;">
+                <span style="background:linear-gradient(135deg,#E8B84B 0%,#F5D98A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Points</span><span style="color:white;">First</span>
               </p>
             </div>
 
             <!-- Body -->
             <div style="padding:32px;">
-              <h1 style="margin:0 0 12px;color:#111827;font-size:24px;font-weight:800;">
-                You're in! 🎉
+              <h1 style="margin:0 0 12px;color:white;font-size:24px;font-weight:800;">
+                You're on the list.
               </h1>
-              <p style="margin:0 0 16px;color:#374151;font-size:16px;line-height:1.6;">
+              <p style="margin:0 0 16px;color:rgba(255,255,255,0.7);font-size:16px;line-height:1.6;">
                 You've secured your spot on the PointsFirst waitlist.
-                As a <strong>founding member</strong>, you'll get early access and
-                locked-in pricing when we launch — forever.
+                As a <strong style="color:white;">founding member</strong>, you'll get early access and
+                locked-in pricing when we launch.
               </p>
-              <p style="margin:0 0 28px;color:#374151;font-size:16px;line-height:1.6;">
-                We're building the first flight search that actually starts with your
-                credit card points — not the destination. We'll be in touch the moment
+              <p style="margin:0 0 28px;color:rgba(255,255,255,0.7);font-size:16px;line-height:1.6;">
+                We're building the first flight search that starts with your
+                points — not the destination. We'll be in touch the moment
                 the doors open.
               </p>
 
               <!-- What to expect -->
-              <div style="background:#F8FAFC;border-radius:12px;padding:20px;margin-bottom:24px;">
-                <p style="margin:0 0 12px;font-weight:700;color:#1A3A8A;font-size:14px;text-transform:uppercase;letter-spacing:0.5px;">
+              <div style="background:rgba(232,184,75,0.08);border:1px solid rgba(232,184,75,0.2);border-radius:12px;padding:20px;margin-bottom:24px;">
+                <p style="margin:0 0 12px;font-weight:700;color:#E8B84B;font-size:12px;text-transform:uppercase;letter-spacing:1px;">
                   What to expect
                 </p>
-                <ul style="margin:0;padding-left:18px;color:#4B5563;font-size:14px;line-height:2;">
+                <ul style="margin:0;padding-left:18px;color:rgba(255,255,255,0.65);font-size:14px;line-height:2.2;">
                   <li>Early access before the public launch</li>
                   <li>Founding member pricing locked in forever</li>
                   <li>A say in what features get built first</li>
                 </ul>
               </div>
 
-              <p style="margin:0;color:#9CA3AF;font-size:12px;line-height:1.6;">
+              <p style="margin:0;color:rgba(255,255,255,0.3);font-size:12px;line-height:1.6;">
                 You're receiving this because you signed up at usepointsfirst.com.<br/>
                 If this was a mistake, just ignore this email.
               </p>
             </div>
 
             <!-- Footer -->
-            <div style="padding:16px 32px;background:#F9FAFB;border-top:1px solid #F3F4F6;">
-              <p style="margin:0;color:#9CA3AF;font-size:11px;">
+            <div style="padding:16px 32px;background:#0D0D0D;border-top:1px solid rgba(232,184,75,0.1);">
+              <p style="margin:0;color:rgba(255,255,255,0.25);font-size:11px;">
                 © 2026 PointsFirst · usepointsfirst.com
               </p>
             </div>
@@ -80,7 +79,7 @@ export async function POST(request) {
 
     // 2. Notify yourself of the new signup
     await resend.emails.send({
-      from: 'PointsFirst Signups <onboarding@resend.dev>',
+      from: 'PointsFirst Signups <hello@usepointsfirst.com>',
       to: NOTIFY_EMAIL,
       subject: `🎉 New waitlist signup: ${email}`,
       html: `
