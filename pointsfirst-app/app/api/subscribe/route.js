@@ -2,8 +2,8 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// The email address you want new signup notifications sent to
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'usepointsfirst@gmail.com'
+
 export async function POST(request) {
   try {
     const { email } = await request.json()
@@ -16,6 +16,7 @@ export async function POST(request) {
     await resend.emails.send({
       from: 'PointsFirst <hello@usepointsfirst.com>',
       to: email,
+      replyTo: 'usepointsfirst@gmail.com',
       subject: "You're on the PointsFirst waitlist",
       html: `
         <!DOCTYPE html>
