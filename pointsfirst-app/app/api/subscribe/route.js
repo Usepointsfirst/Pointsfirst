@@ -12,9 +12,8 @@ export async function POST(request) {
       return Response.json({ error: 'Invalid email address' }, { status: 400 })
     }
 
-    // 1. Confirmation to the person who signed up
     await resend.emails.send({
-      from: 'PointsFirst <hello@usepointsfirst.com>',
+      from: 'PointsFirst <onboarding@resend.dev>',
       to: email,
       subject: "You're on the PointsFirst waitlist",
       html: `
@@ -59,9 +58,8 @@ export async function POST(request) {
       `,
     })
 
-    // 2. Notify yourself
     await resend.emails.send({
-      from: 'PointsFirst Signups <hello@usepointsfirst.com>',
+      from: 'PointsFirst Signups <onboarding@resend.dev>',
       to: NOTIFY_EMAIL,
       subject: `🎉 New waitlist signup: ${email}`,
       html: `
