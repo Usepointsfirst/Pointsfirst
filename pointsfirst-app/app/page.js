@@ -16,11 +16,11 @@ const CARDS = [
 ]
 
 const STEPS = [
-  { n: '01', title: 'Pick Your Cards',    desc: 'Select which credit cards you hold. Chase, Amex, Capital One, Citi, Bilt — we support all the major programs.' },
-  { n: '02', title: 'Enter Your Points',  desc: 'Tell us your balance for each card. Enter a partial amount or your full balance — your call.' },
-  { n: '03', title: 'Choose Your Dates',  desc: 'Select travel dates or compare multiple date ranges side-by-side to find the best window.' },
-  { n: '04', title: 'See Your Options',   desc: 'We surface flights you can actually afford with your points, including how to combine across cards for maximum value.' },
-  { n: '05', title: 'Book It',            desc: 'We show you exactly where and how to book — through your card portal or directly with the airline. We get out of the way.' },
+  { n: '01', title: 'Add Your Cards',      desc: 'Select which credit cards you hold and enter your current point balance for each. No login required — just tell us what you\'re working with.' },
+  { n: '02', title: 'Pick Your Destination', desc: 'Choose where you want to go and when. Flexible on dates? We\'ll show you the best windows to stretch your points further.' },
+  { n: '03', title: 'See What You Can Afford', desc: 'We show every flight your points can cover — including cross-card combinations through shared airline partners most people don\'t know exist.' },
+  { n: '04', title: 'Check Live Bonuses',  desc: 'Before you transfer, we flag any active transfer bonuses on your cards. A 30% bonus can turn 50k points into 65k — we make sure you never miss one.' },
+  { n: '05', title: 'Transfer and Book',   desc: 'We give you step-by-step instructions: which portal to use, how to transfer, and exactly where to click. No guesswork. No rabbit holes.' },
 ]
 
 const ICONS = {
@@ -59,10 +59,10 @@ const ICONS = {
 }
 
 const DIFFERENTIATORS = [
-  { icon: 'card',  title: 'Points First. Always.',    desc: 'Every other tool starts with a destination and hopes your points work out. We start with your cards.' },
-  { icon: 'link',  title: 'Combine Across Cards',     desc: 'Have Chase and Amex? We find flights where both cards transfer to the same airline and show you the combined math.' },
-  { icon: 'chart', title: 'Real Prices. All Fees.',   desc: 'No hidden surprises. Every result includes taxes, carrier fees, and surcharges — the actual number you pay.' },
-  { icon: 'bolt',  title: 'Transfer Bonus Alerts',    desc: 'Cards run 20-40% transfer bonuses a few times a year. We track them so you never miss a chance to stretch your points further.' },
+  { icon: 'bolt',  title: 'Live Transfer Bonus Alerts', desc: 'Chase, Amex, Citi, and Capital One run 20–40% transfer bonuses a few times a year — for a limited window. We track every active bonus in real time so your 50,000 points become 65,000 before you transfer. Most people miss these entirely.' },
+  { icon: 'link',  title: 'Cross-Card Combinations',    desc: 'Have Chase and Amex? Both transfer to Air Canada Aeroplan at 1:1. We find flights where your cards share a transfer partner and show you the combined math — automatically. No spreadsheet required.' },
+  { icon: 'card',  title: 'Built for Everyone',         desc: 'You don\'t need to know what Aeroplan is, or the difference between a saver and standard award. If you have points and want to fly, PointsFirst figures out the rest. No expertise required.' },
+  { icon: 'chart', title: 'No Hidden Costs',            desc: 'Every result shows the real number — points required plus any taxes, carrier fees, and surcharges. What you see is what you pay. No surprises at checkout.' },
 ]
 
 function WaitlistForm({ size = 'large', className = '' }) {
@@ -202,8 +202,7 @@ export default function Home() {
           </h1>
 
           <p className="text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
-            Select your credit cards. Enter your balance. We find flights you can actually afford to
-            book — and combine points across cards so you never leave value on the table.
+            Add your cards and point balances. Pick where you want to go. We show you every flight you can actually book — including combinations across programs most people don't know are possible.
           </p>
 
           <div id="waitlist">
@@ -242,9 +241,7 @@ export default function Home() {
             <span style={{ color: GOLD }}> the destination.</span>
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed mb-8">
-            You pick where you want to go, search for flights, and then scramble to figure out if your
-            points will even cover it. You end up on four different sites, doing mental math,
-            and still not sure if you're getting a good deal.
+            You pick a destination, search for flights, then scramble across four different sites trying to figure out if your points will even cover it. You miss transfer bonuses you didn't know were running. You do mental math that doesn't add up. And you still book on a credit card because it felt easier.
           </p>
         </div>
       </section>
@@ -254,7 +251,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>How It Works</p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Five steps. Zero confusion.</h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">Three screens. One answer.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {STEPS.map((step, i) => (
@@ -283,12 +280,10 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               Two cards. One trip.
               <br />
-              <span style={{ background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_LT} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Maximum value.</span>
+              <span style={{ background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_LT} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Combined automatically.</span>
             </h2>
             <p className="text-lg mt-5 max-w-2xl mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              When Chase UR and Amex MR both transfer to Air Canada Aeroplan, your points
-              aren't separate anymore — they're one combined balance. PointsFirst is the only
-              tool that shows you this.
+              Chase UR and Amex MR both transfer to Air Canada Aeroplan at 1:1. That means your points aren't two separate balances — they're one combined buying power. PointsFirst finds these shared transfer partners automatically and does the math for you. No spreadsheet. No guesswork.
             </p>
           </div>
 
@@ -370,12 +365,12 @@ export default function Home() {
       {/* ── BOTTOM CTA ── */}
       <section className="py-24 px-5 text-center" style={{ background: `linear-gradient(160deg, ${BLACK} 0%, ${SURFACE} 100%)` }} id="cta">
         <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">Be first in line.</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">Your points are worth more than you think.</h2>
           <p className="text-lg mb-3" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            Founding members get early access and locked-in pricing — forever.
+            Most people with 60,000 Chase points have no idea they could fly business class to Europe. PointsFirst changes that. Join the waitlist and be first to find out what yours can do.
           </p>
           <p className="text-sm font-semibold mb-10" style={{ color: GOLD }}>
-            No credit card required to join the waitlist.
+            Founding members get early access and locked-in pricing — forever.
           </p>
           <WaitlistForm size="default" className="max-w-sm mx-auto" />
         </div>
