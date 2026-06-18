@@ -185,15 +185,15 @@ export default function Home() {
 
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.35)` }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: GOLD }} />
-            <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: GOLD }}>
+          <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-8" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.35)` }}>
+            <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: GOLD }} />
+            <span className="text-[10px] sm:text-xs font-semibold tracking-wide uppercase leading-tight" style={{ color: GOLD }}>
               Coming Soon · Founding Members Get Early Access
             </span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
+          <h1 className="text-[28px] sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
             The First Flight Search
             <br />
             <span style={{ background: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_LT} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>That Starts With</span>
@@ -222,7 +222,7 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <p className="text-xs mt-3" style={{ color: 'rgba(255,255,255,0.25)' }}>Chase · Amex · Capital One · Citi · Bilt — more coming</p>
+          <p className="text-xs mt-3 mb-16 sm:mb-0" style={{ color: 'rgba(255,255,255,0.25)' }}>Chase · Amex · Capital One · Citi · Bilt — more coming</p>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1" style={{ color: 'rgba(255,255,255,0.25)' }}>
@@ -234,23 +234,18 @@ export default function Home() {
       </section>
 
       {/* ── THE PROBLEM ── */}
-      <section className="py-20 px-5 bg-gray-50">
+      <section className="py-20 px-5" style={{ background: '#E8E8E8' }}>
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: GOLD }}>The Problem</p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
             Every other flight search starts with
-            <span className="text-gray-400"> the destination.</span>
+            <span style={{ color: 'rgba(248,113,113,0.75)' }}> the destination.</span>
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed mb-8">
             You pick where you want to go, search for flights, and then scramble to figure out if your
             points will even cover it. You end up on four different sites, doing mental math,
             and still not sure if you're getting a good deal.
           </p>
-          <div className="flex items-center justify-center gap-4 text-lg font-bold">
-            <span className="text-red-400 line-through opacity-60">Destination first</span>
-            <span className="text-gray-300 text-2xl">→</span>
-            <span style={{ color: GOLD }}>Points first</span>
-          </div>
         </div>
       </section>
 
@@ -267,7 +262,7 @@ export default function Home() {
                 {i < STEPS.length - 1 && (
                   <div className="hidden lg:block absolute top-8 h-px z-0" style={{ background: `rgba(232,184,75,0.25)`, width: 'calc(100% - 20px)', left: '60%' }} />
                 )}
-                <div className="relative z-10 bg-gray-50 rounded-2xl p-5 flex flex-col gap-3 h-full border border-gray-100">
+                <div className="relative z-10 bg-gray-100 rounded-2xl p-5 flex flex-col gap-3 h-full border border-gray-200">
                   <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold tracking-wider" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.4)`, color: GOLD }}>
                     {step.n}
                   </div>
@@ -334,7 +329,7 @@ export default function Home() {
       </section>
 
       {/* ── DIFFERENTIATORS ── */}
-      <section className="py-20 px-5 bg-white">
+      <section className="py-20 px-5" style={{ background: '#E8E8E8' }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <p className="text-sm font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>Why PointsFirst</p>
@@ -342,7 +337,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {DIFFERENTIATORS.map((d) => (
-              <div key={d.title} className="rounded-2xl border border-gray-100 bg-gray-50 p-6 flex gap-4">
+              <div key={d.title} className="rounded-2xl border border-gray-300 bg-white p-6 flex gap-4">
                 <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(232,184,75,0.1)', color: GOLD }}>
                   {ICONS[d.icon]}
                 </div>
@@ -357,7 +352,7 @@ export default function Home() {
       </section>
 
       {/* ── SUPPORTED CARDS ── */}
-      <section className="py-16 px-5 bg-gray-50">
+      <section className="py-16 px-5 bg-white">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-sm font-bold uppercase tracking-widest mb-8" style={{ color: GOLD }}>Supported Programs at Launch</p>
           <div className="flex flex-wrap justify-center gap-4">
