@@ -185,7 +185,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-3xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-8" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.35)` }}>
+          <div className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 mb-8 mt-8 sm:mt-0" style={{ background: 'rgba(232,184,75,0.12)', border: `1px solid rgba(232,184,75,0.35)` }}>
             <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse" style={{ background: GOLD }} />
             <span className="text-[10px] sm:text-xs font-semibold tracking-wide uppercase leading-tight" style={{ color: GOLD }}>
               Coming Soon · Founding Members Get Early Access
@@ -237,9 +237,9 @@ export default function Home() {
       <section className="py-20 px-5" style={{ background: '#E8E8E8' }}>
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm font-bold uppercase tracking-widest mb-4" style={{ color: GOLD }}>The Problem</p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
             Every other flight search starts with
-            <span style={{ color: 'rgba(248,113,113,0.75)' }}> the destination.</span>
+            <span style={{ color: GOLD }}> the destination.</span>
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed mb-8">
             You pick where you want to go, search for flights, and then scramble to figure out if your
