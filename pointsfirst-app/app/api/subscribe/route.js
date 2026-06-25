@@ -50,3 +50,4 @@ export async function POST(request) {
     return Response.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
   }
 }
+
